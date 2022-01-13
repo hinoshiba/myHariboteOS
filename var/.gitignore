@@ -1,2 +1,6 @@
 *.img
 *.bin
+*.hrb
+*.sys
+*.list
+*.o

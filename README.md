@@ -5,6 +5,7 @@ OS自作入門
 
 ```bash
 brew install nasm mtools
+arch -arm64 brew install x86_64-elf-gcc
 ```
 
 ## リファレンスページ
