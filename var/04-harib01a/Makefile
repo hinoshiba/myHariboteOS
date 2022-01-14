@@ -8,12 +8,6 @@ asmhead.bin: asmhead.nas
 naskfunc.o: naskfunc.nas
 	nasm -g -f elf naskfunc.nas -o naskfunc.o -l naskfunc.list
 bootpack.hrb: bootpack.c naskfunc.o
-	#x86_64-elf-gcc -march=i486 -m32 -T hrb.ld -g bootpack.c naskfunc.o -o bootpack.hrb -ffreestanding -nostdlib -lgcc -S
-	#gcc -march=i486 -mtune=i386 -T hrb.ld -g bootpack.c naskfunc.o -o bootpack.hrb -nostdlib
-	#x86_64-elf-gcc -march=i486 -m32 -mtune=i386 -T hrb.ld -g bootpack.c naskfunc.o -o bootpack.hrb -nostdlib -ffreestanding -lgcc
-	#gcc -march=i486 -m32 -T hrb.ld -g bootpack.c naskfunc.o -o bootpack.hrb -nostdlib -ffreestanding -lgcc
-	#arm-linux-gnueabihf-gcc -march=i486 -m32 -T hrb.ld -g bootpack.c naskfunc.o -o bootpack.hrb -nostdlib -ffreestanding -lgcc
-	#i386-elf-gcc -march=i486 -m32 -mtune=i386 -T hrb.ld -g bootpack.c naskfunc.o -o bootpack.hrb -nostdlib -ffreestanding -lgcc
 	i386-elf-gcc -march=i486 -m32 -T hrb.ld -g bootpack.c naskfunc.o -o bootpack.hrb -nostdlib
 haribote.sys: asmhead.bin bootpack.hrb
 	cat asmhead.bin bootpack.hrb > haribote.sys
