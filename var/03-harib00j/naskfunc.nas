@@ -9,13 +9,15 @@
 
 ;[FILE "naskfunc.nas"]			; ソースファイル名情報; nasmに怒られるから削除
 
-		GLOBAL	_io_hlt			; このプログラムに含まれる関数名
+		;GLOBAL	_io_hlt			; このプログラムに含まれる関数名
+		GLOBAL	io_hlt			; このプログラムに含まれる関数名
 
 
 ; 以下は実際の関数
 
 [SECTION .text]		; オブジェクトファイルではこれを書いてからプログラムを書く
 
-_io_hlt:	; void io_hlt(void);
+;_io_hlt:	; void io_hlt(void);
+io_hlt:	; void io_hlt(void);
 		HLT
 		RET

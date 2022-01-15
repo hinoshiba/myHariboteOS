@@ -1,8 +1,8 @@
 .PHONY: run
 run: haribote.img
 	qemu-system-x86_64 -fda haribote.img
-ipl.bin: ipl.nas
-	nasm ipl.nas -o ipl.bin -l ipl.list
+ipl.bin: ipl10.nas
+	nasm ipl10.nas -o ipl.bin -l ipl10.list
 haribote.sys: haribote.nas
 	nasm haribote.nas -l haribote.list -o haribote.sys
 haribote.img: ipl.bin haribote.sys
