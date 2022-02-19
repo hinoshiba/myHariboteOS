@@ -16,14 +16,14 @@ bootpack.bim: $(SRC) naskfunc.o
 	i386-elf-gcc -march=i486 -m32 -T hrb.ld -g $(SRC) naskfunc.o -o bootpack.bim -nostdlib -Xlinker -Map=bootpack.map
 haribote.sys: asmhead.bin bootpack.bim
 	cat asmhead.bin bootpack.bim > haribote.sys
-hlt.hrb: hlt.nas
-	nasm hlt.nas -l hlt.list -o hlt.hrb
-haribote.img: ipl.bin haribote.sys hlt.hrb
+hello.hrb: hello.nas
+	nasm hello.nas -l hello.list -o hello.hrb
+haribote.img: ipl.bin haribote.sys hello.hrb
 	mformat -f 1440 -C -B ipl.bin -i haribote.img ::
 	mcopy -i haribote.img haribote.sys ::
 	mcopy -i haribote.img Makefile ::
 	mcopy -i haribote.img ipl10.nas ::
-	mcopy -i haribote.img hlt.hrb ::
+	mcopy -i haribote.img hello.hrb ::
 .PHONY: clean
 clean:
 	rm *.map || exit 0
