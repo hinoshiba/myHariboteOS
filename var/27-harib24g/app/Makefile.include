@@ -1,0 +1,26 @@
+APPLIBPATH=../../applib/
+
+ifeq ($(BIG),)
+	LD=../app.ld
+else
+	LD=../app4.ld
+	LOCAL_LIB=../../haribote/mysprint.c
+endif
+
+$(APP).hrb:
+
+%.hrb: %.c
+	i386-elf-gcc -march=i486 -m32 -T $(LD) $*.c $(APPLIBPATH)/apilib.lib $(LOCAL_LIB) -o $*.hrb -nostdlib
+%.hrb: %.nas
+	nasm $*.nas -o $*.hrb
+
+.PHONY: clean
+clean:
+	rm *.hrb || exit 0
+	rm *.sys || exit 0
+	rm *.list || exit 0
+	rm *.o || exit 0
+	rm *.obj || exit 0
+	rm *.lib || exit 0
+.PHONY: src_only
+src_only: clean
